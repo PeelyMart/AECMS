@@ -1,0 +1,163 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* BACKGROUND */
+body {
+  height: 100vh;
+  background: #0D0D0D;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* FORM CARD */
+.registerForm {
+  width: 380px;
+  padding: 40px;
+  border-radius: 16px;
+  margin-top: 40px;
+  margin-left: 30px;
+  margin-bottom: 250px;
+  /* white glass */
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+
+  /* white outline */
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  /* soft glow */
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+}
+
+/* FIRST + LAST NAME SIDE BY SIDE */
+.name {
+  display: flex;
+  gap: 10px;
+}
+
+.name input {
+  flex: 1;
+}
+
+/* INPUTS */
+.registerForm input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  color: white;
+  outline: none;
+}
+
+/* INPUT FOCUS */
+.registerForm input:focus {
+  border-color: white;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* BUTTON */
+.registerForm button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+
+  border: 1px solid white;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* BUTTON HOVER */
+.registerForm button:hover {
+  background: white;
+  color: #0D0D0D;
+}
+
+/* LOGIN LINK */
+.registerLink {
+  display: block;
+  margin-top: 14px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.registerLink:hover {
+  text-decoration: underline;
+}
+
+
+.hero {
+  position: relative;
+  max-width: 600px;
+  transition: transform 0.3s ease-out;
+  margin-right: 90px;
+}
+
+.hero:hover{
+	transform: scale(1.1);
+	transform-origin: center;
+
+}
+
+.logo {
+  font-size: 120px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.subtitle {
+  margin-top: 10px;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+/* Floating badges */
+.badge {
+  position: absolute;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  font-size: 14px;
+  transition: transform 0.5s ease-out;
+}
+
+.b1 { top: 20px; left: -40px; }
+.b2 { top: 110px; left: 200px; }
+.b3 { top: 20px; right: -60px; }
+
+
+.b1:hover{
+	transform: scale(1.3);
+}
+
+.b2:hover{
+	transform: scale(1.3);
+}
+
+.b3:hover{
+	transform: scale(1.3);
+}
+
+
+.logoContainer{
+	justify-content: center;
+}
+
+
