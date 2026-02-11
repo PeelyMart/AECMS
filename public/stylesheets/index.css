@@ -84,12 +84,11 @@ body {
 
 .accent-SVG{
 	position: absolute;
-	left: -20px;
-	right: -30px;
-	width: 900px;
+	inset: 0;              /* top:0 left:0 right:0 bottom:0 */
+	width: 100%;
+	height: 100%;
+	object-fit: cover;     /* fills without distortion */
 	opacity: 0.9;
-	transform: scale(1.2);
-	transform-origin: center;
 	pointer-events: none;
 	z-index: 0;
 }

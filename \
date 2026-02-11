@@ -1,0 +1,18 @@
+let form = document.getElementById("registerForm")
+form.addEventListener("submit", checkForms);
+
+
+
+function checkForms(e){
+	e.preventDefault();
+	let data = new FormData(e.target);
+	let password = data.get("password");
+
+	if(data.get("password") === data.get("confirm")){
+		password.classList.add("error");
+		console.log("matched");
+	}else{
+		console.log("noMatch");
+
+	}
+}

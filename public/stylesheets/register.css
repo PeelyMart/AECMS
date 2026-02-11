@@ -6,7 +6,6 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-/* BACKGROUND */
 body {
   height: 100vh;
   background: #0D0D0D;
@@ -16,7 +15,6 @@ body {
   color: white;
 }
 
-/* FORM CARD */
 .registerForm {
   width: 380px;
   padding: 40px;
@@ -24,18 +22,14 @@ body {
   margin-top: 40px;
   margin-left: 30px;
   margin-bottom: 250px;
-  /* white glass */
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(14px);
 
-  /* white outline */
   border: 1px solid rgba(255, 255, 255, 0.35);
 
-  /* soft glow */
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
 }
 
-/* FIRST + LAST NAME SIDE BY SIDE */
 .name {
   display: flex;
   gap: 10px;
@@ -59,13 +53,11 @@ body {
   outline: none;
 }
 
-/* INPUT FOCUS */
 .registerForm input:focus {
   border-color: white;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
-/* BUTTON */
 .registerForm button {
   width: 100%;
   padding: 10px;
@@ -80,13 +72,11 @@ body {
   transition: all 0.2s ease;
 }
 
-/* BUTTON HOVER */
 .registerForm button:hover {
   background: white;
   color: #0D0D0D;
 }
 
-/* LOGIN LINK */
 .registerLink {
   display: block;
   margin-top: 14px;
@@ -156,8 +146,17 @@ body {
 }
 
 
+.errorMsg{
+	color: red;
+}
 .logoContainer{
 	justify-content: center;
+}
+
+.errorMsg{
+	padding-bottom: 10px;
+	margin-bottom: 5px;
+
 }
 
 

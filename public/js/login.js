@@ -2,21 +2,7 @@
 $form = document.getElementById("loginForm");
 $form.addEventListener("submit", initLogin)
 
-function debugLogin(e){
 
-fetch("endpoint/login.php",{
-	method: "POST",
-	body:  new FormData(e.target)
-	})
-	.then(res => res.json())
-	.then(data => {
-		console.log(data);
-		
-	});
-
-
-
-}
 
 function initLogin(e){
 	e.preventDefault();
