@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="stylesheets/u-main.css">
+</head>
+<body>
+	<div class="topBar">
+		<h2 id="greet" class="greet">Hello, User02</h2>
+		<nav>
+			<ul class="navList">
+				<li>  
+					<a href="#" class="navBar selected">Dashboard</a>
+				</li>
+				<li>
+					<a href="u-orders.html" class="navBar">Orders</a>
+				</li>
+				<li>
+					<a href="../endpoint/logoutService.php" class="navBar">Logout</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="mainContent">
+		<div class="module currentOrders">
+			<h2 class="moduleTitle">To Pack:</h2>
+			<div class="moduleContainer">
+				<a href="orderView.html?id=1" class="orders">
+			<span class="OrderId">Order #001</span>
+				</a>
+				<a href="#" class="orders">
+					<span class="OrderId">Order #002</span>
+				</a>
+			</div>
+		</div>
+		<div class="module processedOrders">
+			<h2 class="moduleTitle">Packed:</h2>
+			<div class="moduleContainer">
+				<a href="#" class="orders">
+					<span class="OrderId">Order #001</span>
+				</a>
+				<a href="#" class="orders">
+					<span class="OrderId">Order #002</span>
+				</a>
+			</div>
+		</div>
+	
+
+	</div>
+	<div class="bottomContent">
+		<div class="module unclaimedOrders">
+			<h2 class="moduleTitle">Unclaimed Orders</h2>
+		</div>
+		
+
+	</div>
+	<script src="js/u-dashboard.js"></script>
+	
+</body>
+</html>

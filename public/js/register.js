@@ -12,22 +12,31 @@ function checkForms(e){
 	let data = new FormData(e.target);
 	let form = e.target;
 	let approve = 0;
+	//this is not formal form validation this is just to have a dynamic html message 
+	// Password check
+    if (data.get("password") === data.get("confirm")) {
+        approve++;
+    } else {
+        document.getElementById("passwordMessage").innerHTML = passwordError;
+    }
 
+    // Email check
+    if (data.get("email").includes("@") && data.get("email").includes(".")) {
+        approve++;
+    } else {
+        document.getElementById("emailMessage").innerHTML = emailError;
+    }
 
-	document.getElementById("passwordMessage").innerHTML = "";
-	document.getElementById("emailMessage").innerHTML = "";
-	if(data.get("password") === data.get("confirm")){
-		approve++;
+    // Contact number check (allow empty)
+    let contact = data.get("contactNumber");
+    if (contact === "" || numbersOnly.test(contact)) {
+        approve++;
+    } else {
+        document.getElementById("numberMessage").innerHTML = numberError;
+    }
 
-	}else{
-		document.getElementById("passwordMessage").innerHTML = passwordError;
-	}
-	if(data.get("email").includes("@") && data.get("email").includes(".")){
-		approve++;
-	}else{
-		document.getElementById("emailMessage").innerHTML = emailError;
-	}if(!numbersOnly.test(data.get("contactNumber"))){
-		document.getElementById("numberMessage").innerHTML = numberError;
-	}
-	
+    // If all validations passed, submit the form
+    if (approve === 3) {
+        form.submit(); // this sends it to register.php as normal
+    }
 }
