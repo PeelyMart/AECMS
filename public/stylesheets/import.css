@@ -159,13 +159,15 @@ body {
 
 }
 
+
 .platformButtons {
   display: flex;
-  gap: 50px;
-  margin-bottom: 25px;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .platformButtons button {
+  flex: 1; 
   padding: 10px;
   border-radius: 8px;
 
@@ -187,3 +189,5 @@ body {
   background: white;
   color: #0D0D0D;
 }
+
+

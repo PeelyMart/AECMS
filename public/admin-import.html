@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Import CSV</title>
+  <link rel="stylesheet" href="stylesheets/import.css">
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- LEFT SIDE (same hero) -->
+    <div class="logoContainer">
+      <div class="hero">
+        <h1 class="logo">AECMS</h1>
+        <p class="subtitle">AGGREGATED E-COMMERCE MANAGEMENT SYSTEM</p>
+        <span class="badge b1">CENTRALIZED</span>
+        <span class="badge b2">TRACKING</span>
+        <span class="badge b3">ANALYTICS</span>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE FORM -->
+    <div class="registerForm">
+      <form action="../endpoint/database/importcsv.php" method="POST" enctype="multipart/form-data">
+        
+        <h3 style="margin-bottom:15px; text-align:center;">
+          Select where you are importing CSV from
+        </h3>
+
+        <!-- PLATFORM BUTTONS -->
+        <div class="platformButtons">
+          <button type="button" onclick="selectPlatform('lazada')">Lazada</button>
+          <button type="button" onclick="selectPlatform('shopee')">Shopee</button>
+          <button type="button" onclick="selectPlatform('tiktok')">TikTok</button>
+        </div>
+
+        <!-- HIDDEN INPUT TO STORE CHOICE -->
+        <input type="hidden" name="platform" id="platform">
+
+        <!-- FILE INPUT -->
+        <input type="file" name="csvFile" accept=".csv" required>
+
+        <button type="submit">Upload CSV</button>
+      </form>
+
+      <a href="../index.html" class="registerLink">Back</a>
+    </div>
+
+  </div>
+  <!--Just for styling-->
+  <script>
+    function selectPlatform(platform) {
+      document.getElementById("platform").value = platform;
+
+      // highlight selected button
+      const buttons = document.querySelectorAll(".platformButtons button");
+      buttons.forEach(btn => btn.classList.remove("active"));
+
+      event.target.classList.add("active");
+    }
+  </script>
+
+</body>
+</html>

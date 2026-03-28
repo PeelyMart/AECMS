@@ -19,7 +19,7 @@ if(empty($_POST['password'])){
 
 $password = $_POST['password'];
 
-$stmt = $conn->prepare("SELECT * FROM USERS WHERE userID = ?");
+$stmt = $conn->prepare("SELECT * FROM users WHERE userID = ?");
 $stmt->bind_param("i", $userID);
 $stmt->execute();
 
