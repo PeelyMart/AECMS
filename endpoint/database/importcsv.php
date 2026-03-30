@@ -3,7 +3,7 @@ require 'DBConnection.php';
 $map = [];
 $orderTotals = [];
 $platform = $_POST['platform'];
-
+$ordersCache = [];
 switch($platform){
 case 'shopee':
 	$map = [
@@ -71,8 +71,9 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
             $orderId = $ordersCache[$externalOrderId];
         }
         
-	// 2) Insert order item linked to order header 
+	// We are inserting order item linked to order header here 
 	$sub_total = (float)$qty * $priceSnapshot;
+	echo $sub_total;
 	if (!isset($orderTotals[$orderId])) { //we lowkey are using a not very efficient hashing system but for now its a proof of concept 
 	    $orderTotals[$orderId] = 0;
 	}
@@ -85,14 +86,14 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
 
         }
     
-    // 4) After loop, update total_worth for each order header if needed
-foreach ($orderTotals as $orderId => $total) {
-
-    $stmt = $conn->prepare("
-        UPDATE orders_header 
-        SET total_worth = ? 
-        WHERE id = ?
-    ");
+    //To update the total worth of the package.
+	foreach ($orderTotals as $orderId => $total) {
+	    $stmt = $conn->prepare("
+		UPDATE orders_header 
+		SET total_worth = ? 
+		WHERE id = ?
+		");
+	}
 
     $stmt->bind_param("di", $total, $orderId);
     $stmt->execute();

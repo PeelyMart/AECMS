@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Import CSV</title>
+  <link rel="stylesheet" href="stylesheets/prod.css">
+</head>
+<body>
+
+  <div class="container">
+    
+    <div class="headerTitle">
+	    <h1>Create Product</h1>
+
+    </div>
+    <!-- RIGHT SIDE FORM -->
+	    <div class="createProdForm">
+	      <form action="../endpoint/productUpdate.php" method="POST" >
+		      <label for=""></label>
+		      <input type="text" id="name" name="name" placeholder="name">
+		      <input type="text" id="lsku" name="lsku" placeholder="lazada sku">
+		      <input type="text" id="ssku" name="ssku" placeholder="shopee sku">
+		      <input type="text" id="tsku" name="tsku" placeholder="tiktok sku">
+		      <input type="number" id="qty" name="qty" placeholder="stock quantity">
+		      <textarea name="remarks" id="remarks" placeholder="description.."></textarea>
+		      <input type="text" id="unitPrice" name="unitPrice" placeholder="price per piece">
+			<input type="hidden" name="id" id="id">
+		      <div>
+				<button type="submit">Update</button>
+				<a href="areadProd.html" class="backButton">Back</a>
+		      </div>
+	      </form>
+	</div>
+	<script src="js/retrieveSingleProduct.js"></script>
+
+</body>
+</html>
