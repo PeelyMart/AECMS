@@ -13,6 +13,14 @@ case 'shopee':
 		'buyer' => 'username (buyer)',
 	];
 	break;
+case 'lazada':
+	$map = [
+		'order_id' => 'ordernumber',
+		'sku' => 'lazadasku',
+		'buyer' => 'customername',
+		'qty' => null,
+	];
+	break;
 case 'tiktok': 
 	$map = [
 		'order_id' => 'Order ID',
@@ -39,12 +47,21 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
 
 
 	while (($row = fgetcsv($handle)) !== false) {
+	    if (!$row || count(array_filter($row)) === 0) {
+		continue;
+	    }
+
+	    if (empty(trim($row[0]))) {
+		continue;
+	    }
+	//this was to fix the issue that it breaks on csv that may me poorly formatted: blank rows
 	$data = array_combine($headers, $row);
 
-	$externalOrderId = $data[$map['order_id']];
-	$buyer = isset($data[$map['buyer']]) ? $data[$map['buyer']] : 'unset';
+	    $externalOrderId = $data[$map['order_id']];
+	    $buyer = isset($map['buyer']) ? $data[$map['buyer']] : 'unset';
+
 	$ext_sku = $data[$map['sku']];
-	$qty = isset($data[$map['qty']]) ? $data[$map['qty']] : 1;
+	$qty = isset($map['qty']) ? $data[$map['qty']] : 1;
 	$priceSnapshot = 0;
 	$extractedPID = "";
 	$result = skuExtractor($conn, $ext_sku, $priceSnapshot, $extractedPID);
@@ -96,11 +113,12 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
 	}
 
     $stmt->bind_param("di", $total, $orderId);
-    $stmt->execute();
-}
-    
+	$stmt->execute();
+
     fclose($handle);
 }
+    
+
 
 function skuExtractor($conn, $sku, &$price, &$productID){
 	$sql = "SELECT id, unit_price FROM products WHERE ? in (l_sku, s_sku, t_sku) LIMIT 1";

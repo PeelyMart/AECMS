@@ -34,7 +34,7 @@ $ordersResult = $conn->query($query);
         <nav>
             <ul class="navList">
                 <li><a href="a-dashboard.php" class="navBar selected">Dashboard</a></li>
-                <li><a href="endpoint/a-profiles.php" class="navBar">Profiles</a></li>
+                <li><a href="a-profiles.php" class="navBar">Profiles</a></li>
             </ul>
         </nav>
     </div>
