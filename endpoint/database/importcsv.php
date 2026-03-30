@@ -48,7 +48,7 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
 
 
 
-	while (($row = fgetcsv($handle)) !== false) {
+	while (($row = fgetcsv($handle, 0, ",", '"', "\\")) !== false) {
 	    if (!$row || count(array_filter($row)) === 0) {
 		continue;
 	    }
@@ -81,7 +81,7 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
 	if (!isset($ordersCache[$externalOrderId])) {
 		$placeHolderWorth = 0.00;
 		$stmt = $conn -> prepare("INSERT INTO orders_header (ext_id, platform, buyer_username, total_worth) VALUES (?,?,?,?)");
-		$stmt->bind_param("issi", $externalOrderId, $platform, $buyer, $placeHolderWorth);
+		$stmt->bind_param("sssi", $externalOrderId, $platform, $buyer, $placeHolderWorth);
 		$stmt->execute();
 
 		// Get inserted order ID
