@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="public/stylesheets/u-main.css">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <div class="mainContent">
+        <div class="module">
+            <h2 class="moduleTitle" id="titleHeader">Loading Profile...</h2>
+            <form id="editForm" class="moduleContainer">
+                <input type="hidden" id="userId">
+                
+                <label>First Name</label>
+                <input type="text" id="firstName" required>
+                
+                <label>Last Name</label>
+                <input type="text" id="lastName" required>
+                
+                <label>Email</label>
+                <input type="email" id="email" required>
+
+                <label>Status</label>
+                <select id="status">
+                    <option value="PENDING">PENDING</option>
+                    <option value="ACTIVE">ACTIVE</option>
+                    <option value="INACTIVE">INACTIVE</option>
+                </select>
+
+                <button type="submit" class="navBar" style="margin-top:20px; cursor:pointer;">Update User</button>
+                <a href="a-profiles.html" style="color: rgba(255,255,255,0.5); text-align: center; text-decoration: none; margin-top: 10px;">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('id');
+
+        async function loadUserData() {
+            if (!userId) {
+                alert("No User ID provided");
+                window.location.href = 'a-profiles.html';
+                return;
+            }
+
+            const response = await fetch(`a-editProfilesData.php?id=${userId}`);
+            const user = await response.json();
+
+            if (user) {
+                document.getElementById('titleHeader').innerText = `Edit Profile: ${user.firstName}`;
+                document.getElementById('userId').value = user.id;
+                document.getElementById('firstName').value = user.firstName;
+                document.getElementById('lastName').value = user.lastName;
+                document.getElementById('email').value = user.email;
+                document.getElementById('status').value = user.status;
+            }
+        }
+
+        document.getElementById('editForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const updatedData = {
+                id: document.getElementById('userId').value,
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                status: document.getElementById('status').value
+            };
+
+            const response = await fetch('a-editProfilesData.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedData)
+            });
+
+            const result = await response.json();
+            if (result.status === "success") {
+                alert("User Updated Successfully!");
+                window.location.href = 'a-profiles.html';
+            } else {
+                alert("Error: " + result.message);
+            }
+        });
+
+        window.onload = loadUserData;
+    </script>
+</body>
+</html>
