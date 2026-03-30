@@ -116,10 +116,11 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
 		SET total_worth = ? 
 		WHERE id = ?
 		");
+	$stmt->bind_param("di", $total, $orderId);
+	$stmt->execute();
 	}
 
-    $stmt->bind_param("di", $total, $orderId);
-	$stmt->execute();
+    
 
     fclose($handle);
 }
