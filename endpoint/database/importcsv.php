@@ -23,8 +23,10 @@ case 'lazada':
 	break;
 case 'tiktok': 
 	$map = [
-		'order_id' => 'Order ID',
-		'sku' => 'SKU ID',
+		'order_id' => 'order id',
+		'sku' => 'sku id',
+		'buyer' => null,
+		'qty' => null
 	];
 	break;
 }
@@ -54,11 +56,15 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
 	    if (empty(trim($row[0]))) {
 		continue;
 	    }
+
+	    if (count($headers) !== count($row)) {
+		    continue; // skip malformed rows
+	    }
 	//this was to fix the issue that it breaks on csv that may me poorly formatted: blank rows
 	$data = array_combine($headers, $row);
 
 	    $externalOrderId = $data[$map['order_id']];
-	    $buyer = isset($map['buyer']) ? $data[$map['buyer']] : 'unset';
+	    $buyer = isset($map['buyer']) ? $data[$map['buyer']] : 'TiktokUnknown'; //tiktok imports do not include the buyer's username
 
 	$ext_sku = $data[$map['sku']];
 	$qty = isset($map['qty']) ? $data[$map['qty']] : 1;
@@ -67,7 +73,7 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
 	$result = skuExtractor($conn, $ext_sku, $priceSnapshot, $extractedPID);
 	//Snapshot because it queries the current price referencing the 'Products' table, it may change however it records in the moment
 	if($result === 0){
-		die("skuExtractorError");
+		continue; //it does not get saved, that means the admin was throwing and did not set any corresponding SKU in the products table
 	};  
 
 	    
@@ -91,7 +97,7 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
 	// We are inserting order item linked to order header here 
 	$sub_total = (float)$qty * $priceSnapshot;
 	echo $sub_total;
-	if (!isset($orderTotals[$orderId])) { //we lowkey are using a not very efficient hashing system but for now its a proof of concept 
+	if (!isset($orderTotals[$orderId])) { //we lowkey are using a not very efficient hashing system but for now its a proof of concept
 	    $orderTotals[$orderId] = 0;
 	}
 	$orderTotals[$orderId] += $sub_total;
