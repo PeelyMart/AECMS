@@ -1,0 +1,3 @@
+﻿Order ID,Order Status,Order Substatus,Cancellation/Return Type,SKU ID,SKU Unit Original Price,SKU Subtotal Before Discount,SKU Platform Discount,SKU Seller Discount,SKU Subtotal After Discount,Shipping Fee After Discount,Original Shipping Fee,Shipping Fee Seller Discount,Shipping Fee Platform Discount,Order Amount,Order Refund Amount,Fulfilment Type,Warehouse Name,Tracking ID,Delivery Option,Payment Method,Package ID,Purchase Channel
+TK-0009812,x,x,x,TK-0001,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+TK-0009812,x,x,x,TK-0008,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
