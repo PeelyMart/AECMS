@@ -26,11 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error loading user:", err);
     });
 	loadUnclaimed();
+	loadClaimedPending();
 });
 
-
-
-/*
+async function loadClaimedPending(){
     const res1 = await fetch("../endpoint/getToPack.php");
     const toPack = await res1.json();
 
@@ -39,16 +38,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let i = 0; i < toPack.length; i++) {
         toPackContainer.innerHTML += `
-            <a href="orderView.html?id=${toPack[i].id}" class="orders">
-                <span class="OrderId">Order #${toPack[i].ext_id}</span>
+            <a href="u-orderView.html?id=${toPack[i].id}&type=pending" class="orders">
+		<div class="orderLeft">
+                <span class="orderId">Order #${toPack[i].id}</span>
+                <span class="orderId">Imported on ${toPack[i].created_at}</span>
+		</div>
+		<div class="orderRight">
+                <span class="platform">${toPack[i].platform}</span>
+                <span class="total">P ${toPack[i].total_worth}</span>
+		</div>
             </a>
         `;
     }
 
+}
+/*
 
     // =======================
     // PACKED
     // =======================
+
     const res2 = await fetch("../endpoint/getPacked.php");
     const packed = await res2.json();
 
@@ -63,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 */
-
     // =======================
     // UNCLAIMED
     // =======================
@@ -75,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let i = 0; i < unclaimed.length; i++) {
         unclaimedContainer.innerHTML += `
-            <a href="orderView.html?id=${unclaimed[i].id}?&platform=${unclaimed[i].id}" class="orders">
+            <a href="u-orderView.html?id=${unclaimed[i].id}&type=unclaimed" class="orders">
 		<div class="orderLeft">
                 <span class="orderId">Order #${unclaimed[i].id}</span>
                 <span class="orderId">Imported on ${unclaimed[i].created_at}</span>

@@ -79,3 +79,38 @@ body {
 
 }
 
+.button{
+	width: 200px;
+	text-decoration: none;
+	padding: 10px;
+	border-radius: 8px;
+
+	
+	color: white;
+	font-weight: 600;
+
+	cursor: pointer;
+	transition: all 0.2s ease;
+	padding: 10px 20px;
+	margin-right: 50px;
+
+}
+
+.back{
+	border: 1px solid red;
+	background: rgba(255, 0, 0, 0.08);
+}
+
+.claim{
+	border: 1px solid green;
+	background: rgba(0, 255, 0, 0.08);
+}
+
+.button:hover {
+	transform: scale(1.05);
+}
+
+.buttonDivs{
+	margin: 20px;
+	padding: 10px;
+}

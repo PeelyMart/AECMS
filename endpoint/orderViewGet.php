@@ -7,13 +7,19 @@ $id = $_POST['id'];
 // BUILD QUERY
 // =====================
 $sql = "
-    SELECT 
-        p.id,
-        p.name,
-        oi.qty
-    FROM order_items oi
-    JOIN products p ON oi.product_id = p.id
-    WHERE oi.order_id = ?
+	SELECT 
+	    p.id, 
+	    p.name, 
+	    oi.qty, 
+	    oi.sub_total, 
+	    oh.ext_id, 
+	    oh.platform
+	FROM order_items oi
+	JOIN products p 
+	    ON oi.product_id = p.id
+	JOIN orders_header oh 
+	    ON oi.order_id = oh.id 
+	WHERE oi.order_id = ?;
 ";
 
 $stmt = $conn->prepare($sql);
