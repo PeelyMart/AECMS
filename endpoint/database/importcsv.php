@@ -96,7 +96,6 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
         
 	// We are inserting order item linked to order header here 
 	$sub_total = (float)$qty * $priceSnapshot;
-	echo $sub_total;
 	if (!isset($orderTotals[$orderId])) { //we lowkey are using a not very efficient hashing system but for now its a proof of concept
 	    $orderTotals[$orderId] = 0;
 	}
