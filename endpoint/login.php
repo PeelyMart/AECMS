@@ -36,7 +36,7 @@ if($result->num_rows === 0){
 $matched = $result->fetch_assoc();
 $matchedPassword = $matched['password'];
 
-if(password_verify($password, $matchedPassword)){ 
+if(password_verify($password, $matchedPassword) && $matched['status'] === 'ACTIVE'){ 
 	$_SESSION['userData'] = $matched;
 	echo json_encode([
 		"status" => "success"
