@@ -211,3 +211,60 @@ input, select {
     background: rgba(255,255,255,0.3); 
 }
 
+
+.name input {
+  flex: 1;
+}
+
+/* INPUTS */
+.editForm input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  color: white;
+  outline: none;
+}
+
+.editForm input:focus {
+  border-color: white;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.updateButton {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+
+  border: 1px solid white;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.updateButton:hover {
+  background: white;
+  color: #0D0D0D;
+}
+
+.registerLink {
+  display: block;
+  margin-top: 14px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.registerLink:hover {
+  text-decoration: underline;
+}
+
+

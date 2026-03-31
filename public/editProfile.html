@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="public/stylesheets/u-main.css">
+    <link rel="stylesheet" href="stylesheets/a-profiles.css">
     <title>Edit Profile</title>
 </head>
 <body>
@@ -28,7 +28,7 @@
                     <option value="INACTIVE">INACTIVE</option>
                 </select>
 
-                <button type="submit" class="navBar" style="margin-top:20px; cursor:pointer;">Update User</button>
+                <button type="submit" class="updateButton">Update User</button>
                 <a href="a-profiles.html" style="color: rgba(255,255,255,0.5); text-align: center; text-decoration: none; margin-top: 10px;">Cancel</a>
             </form>
         </div>
@@ -45,7 +45,7 @@
                 return;
             }
 
-            const response = await fetch(`a-editProfilesData.php?id=${userId}`);
+            const response = await fetch(`../endpoint/a-editProfiles.php?id=${userId}`);
             const user = await response.json();
 
             if (user) {
