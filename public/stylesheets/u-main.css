@@ -167,6 +167,53 @@ body{
 	background: rgba(255,255,255,0.10);
 }
 
+.orderCard{
+	gap: 12px;
+}
+
+.orderLink{
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	text-decoration: none;
+}
+
+.orderActions{
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-shrink: 0;
+}
+
+.actionButton{
+	border: none;
+	border-radius: 8px;
+	padding: 10px 14px;
+	cursor: pointer;
+	font-weight: 600;
+	color: white;
+	background: #4CAF50;
+	box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+	transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.actionButton:hover{
+	opacity: 0.92;
+	transform: translateY(-1px);
+}
+
+.actionButton:disabled{
+	opacity: 0.65;
+	cursor: not-allowed;
+	transform: none;
+}
+
+.secondaryAction{
+	background: #ff9f43;
+}
+
 .orderLeft{
 	display: flex;
 	flex-direction: column;
@@ -175,6 +222,7 @@ body{
 .orderRight{
 	display: flex;
 	flex-direction: column;
+	align-items: flex-end;
 }
 
 .orderId{
