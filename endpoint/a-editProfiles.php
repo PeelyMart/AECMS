@@ -12,8 +12,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $conn->prepare("UPDATE users SET firstName=?, lastName=?, email=?, status=? WHERE id=?");
-    $stmt->bind_param("ssssi", $data['firstName'], $data['lastName'], $data['email'], $data['status'], $data['id']);
+    $id = $data['id'];
+    $fName = $data['firstName'];
+    $lName = $data['lastName'];
+    $email = $data['email'];
+    $status = $data['status'];
+    $password = isset($data['password']) ? trim($data['password']) : '';
+
+    if (!empty($password)) {
+        // hashing new password (if changed)
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        
+        $stmt = $conn->prepare("UPDATE users SET firstName=?, lastName=?, email=?, status=?, password=? WHERE id=?");
+        $stmt->bind_param("sssssi", $fName, $lName, $email, $status, $hashedPassword, $id);
+        
+    } else {
+        $stmt = $conn->prepare("UPDATE users SET firstName=?, lastName=?, email=?, status=? WHERE id=?");
+        $stmt->bind_param("ssssi", $fName, $lName, $email, $status, $id);
+    }
     
     if ($stmt->execute()) {
         echo json_encode(["status" => "success", "redirect" => "a-profiles.html"]);

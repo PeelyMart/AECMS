@@ -21,6 +21,9 @@
                 <label>Email</label>
                 <input type="email" id="email" required>
 
+                <label>New Password (Leave blank to keep current)</label>
+                <input type="password" id="password" placeholder="Enter new password">
+
                 <label>Status</label>
                 <select id="status">
                     <option value="PENDING">PENDING</option>
@@ -66,7 +69,8 @@
                 firstName: document.getElementById('firstName').value,
                 lastName: document.getElementById('lastName').value,
                 email: document.getElementById('email').value,
-                status: document.getElementById('status').value
+                status: document.getElementById('status').value,
+                password: document.getElementById('password').value
             };
 
             const response = await fetch('../endpoint/a-editProfiles.php', {
