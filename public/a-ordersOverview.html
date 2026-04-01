@@ -8,17 +8,19 @@
     <link rel="stylesheet" href="stylesheets/a-analytics.css">
     <style>
         .searchContainer {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             gap: 10px;
+            align-items: center;
         }
         .searchContainer input {
             flex: 1;
-            padding: 10px;
+            padding: 10px 12px;
             border-radius: 5px;
             border: 1px solid rgba(76, 175, 80, 0.3);
             background: rgba(255,255,255,0.05);
             color: white;
+            font-size: 14px;
         }
         .searchContainer input::placeholder {
             color: rgba(255,255,255,0.5);
@@ -31,9 +33,206 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
         }
         .filterButton:hover {
             background: #45a049;
+        }
+        .paginationContainer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .paginationButton {
+            padding: 8px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .paginationButton:hover {
+            background: #45a049;
+        }
+        .paginationButton:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+        .paginationInfo {
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+            padding: 8px 15px;
+        }
+        .assignedCell {
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .assignedCell:hover {
+            text-decoration: underline;
+            color: #4CAF50;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+        }
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modalContent {
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        .modalHeader {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .modalBody {
+            margin-bottom: 20px;
+        }
+        .staffSelect {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+        }
+        .staffSelect:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+        .staffSelect option {
+            background: #1e1e1e;
+            color: white;
+        }
+        .modalFooter {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .modalButton {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .modalButton.save {
+            background: #4CAF50;
+            color: white;
+        }
+        .modalButton.save:hover {
+            background: #45a049;
+        }
+        .modalButton.cancel {
+            background: #666;
+            color: white;
+        }
+        .modalButton.cancel:hover {
+            background: #555;
+        }
+        /* Row highlight animation */
+        tr[data-order-id] {
+            transition: background-color 0.5s ease;
+        }
+        /* Status Filter Styles - Radio Buttons */
+        .statusFilterContainer {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-left: auto;
+        }
+        .statusFilterLabel {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        .statusRadio {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .statusRadio input[type="radio"] {
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+            margin: 0;
+        }
+        .statusRadio label {
+            color: rgba(255,255,255,0.8);
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0;
+            white-space: nowrap;
+        }
+        #statusFiltersContainer {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        /* Date Range Filter Styles */
+        .dateRangeContainer {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-left: auto;
+        }
+        .dateRangeLabel {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        .dateInputGroup {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .dateInputGroup input[type="date"] {
+            padding: 8px 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .dateInputGroup input[type="date"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+        .dateInputGroup input[type="date"]::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        .dateRangeSeparator {
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
         }
     </style>
 </head>
@@ -85,6 +284,27 @@
                 <input type="text" id="searchInput" placeholder="Search by Order ID, Platform, or Buyer...">
                 <button class="filterButton" onclick="filterOrders()">Search</button>
                 <button class="filterButton" onclick="resetSearch()" style="background: #666;">Reset</button>
+                
+                <!-- Status Filter -->
+                <div class="statusFilterContainer">
+                    &nbsp;
+                    &nbsp;
+                    <div id="statusFiltersContainer"></div>
+                </div>
+                
+                <!-- Date Range Filter -->
+                <div class="dateRangeContainer">
+                    &nbsp;
+                    &nbsp;
+                    <div class="dateInputGroup">
+                        <input type="date" id="fromDate" title="From Date">
+                        <span class="dateRangeSeparator">to</span>
+                        <input type="date" id="toDate" title="To Date">
+                    </div>
+                </div> 
+                &nbsp;
+                &nbsp;
+
             </div>
 
             <div class="moduleContainer">
@@ -106,6 +326,35 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="paginationContainer">
+                <button class="paginationButton" id="prevBtn" onclick="previousPage()">← Previous</button>
+                <span class="paginationInfo" id="pageInfo">Page 1</span>
+                <button class="paginationButton" id="nextBtn" onclick="nextPage()">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assignment Modal -->
+    <div id="assignmentModal" class="modal">
+        <div class="modalContent">
+            <div class="modalHeader">Change Assignment</div>
+            <div class="modalBody">
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 15px;">
+                    <strong>Order:</strong> <span id="modalOrderId">-</span>
+                </p>
+                <label style="color: rgba(255,255,255,0.7); font-weight: 600; margin-bottom: 8px; display: block;">
+                    Assign to Staff Member:
+                </label>
+                <select id="staffSelect" class="staffSelect">
+                    <option value="">-- Unassigned --</option>
+                </select>
+            </div>
+            <div class="modalFooter">
+                <button class="modalButton cancel" onclick="closeModal()">Cancel</button>
+                <button class="modalButton save" onclick="saveAssignment()">Save</button>
             </div>
         </div>
     </div>
