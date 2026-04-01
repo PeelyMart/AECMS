@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Analytics</title>
+    <link rel="stylesheet" href="stylesheets/u-main.css">
+    <link rel="stylesheet" href="stylesheets/a-analytics.css">
+</head>
+<body>
+    <div class="topBar">
+        <h2 class="greet">Hello, Admin!</h2>
+        <nav>
+            <ul class="navList">
+                <li><a href="a-readProd.html" class="navBar">Products</a></li> 
+                <li><a href="a-profiles.html" class="navBar">Profile Control</a></li>
+                <li><a href="a-ordersOverview.html" class="navBar">Orders Overview</a></li>
+                <li><a href="a-analytics.html" class="navBar selected">Analytics</a></li>
+                <li><a href="a-import.html" class="navBar">Bulk Import Orders</a></li>
+                <li><a href="../endpoint/logoutService.php" class="navBar">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="bottomContent">
+        <!-- This Month Analytics -->
+        <div class="module">
+            <h2 class="moduleTitle">This Month's Analytics</h2><br>
+            <div class="analyticsGrid">
+                <!-- Top Packer -->
+                <div class="card">
+                    <h3>Top Packer</h3>
+                    <p class="cardValue" id="topPackerName">Loading...</p>
+                    <p class="cardLabel" id="topPackerCount">0 orders packed</p>
+                </div>
+
+                <!-- Top Product -->
+                <div class="card">
+                    <h3>Top Product</h3>
+                    <p class="cardValue" id="topProductName">Loading...</p>
+                    <p class="cardLabel" id="topProductQty">0 units</p>
+                </div>
+
+                <!-- Month Total Worth -->
+                <div class="card">
+                    <h3>Total Worth</h3>
+                    <p class="cardValue" id="monthTotalWorth">₱0.00</p>
+                    <p class="cardLabel" id="monthTotalOrders">0 orders</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <!-- 6 Months Chart -->
+        <div class="module">
+            <h2 class="moduleTitle">Last 6 Months Revenue</h2><br>
+            <div class="chartContainer">
+                <canvas id="sixMonthChart"></canvas>
+            </div>
+            <table class="sixMonthTable">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Total Worth</th>
+                        <th>Orders</th>
+                    </tr>
+                </thead>
+                <tbody id="sixMonthTableBody">
+                    <tr>
+                        <td colspan="3" style="text-align: center; color: rgba(255,255,255,0.5);">Loading data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/a-analytics.js"></script>
+</body>
+</html>
