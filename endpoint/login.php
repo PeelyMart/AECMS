@@ -35,13 +35,21 @@ if($result->num_rows === 0){
 
 $matched = $result->fetch_assoc();
 $matchedPassword = $matched['password'];
-
 if(password_verify($password, $matchedPassword) && $matched['status'] === 'ACTIVE'){ 
 	$_SESSION['userData'] = $matched;
+	if($matched['role'] === 'ADMIN'){
+		echo json_encode([
+			"status" => "success",
+			"redirect" => "public/a-readProd.html",
+		]);
+		exit();
+	}
+
 	echo json_encode([
-		"status" => "success"
+		"status" => "success",
+		"redirect" => "public/u-dashboard.html"
 	]);
-} else {
+}else {
 	echo json_encode([ 
 		"status" => "error",
 		"errorMsg" => "invalid password"

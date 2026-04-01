@@ -18,7 +18,8 @@ fetch("endpoint/login.php",{
 
 		{
 		if(data.status === "success"){
-			window.location.href = "public/u-dashboard.html";
+			window.location.href = data.redirect;
+			console.log(data.redirect);
 		}else {
 			console.log(data.errorMsg);
 			console.log(data.debug);

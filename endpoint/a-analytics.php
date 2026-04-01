@@ -2,9 +2,8 @@
 require __DIR__ . '/database/DBConnection.php';
 session_start();
 
-// Check if user is ADMIN
 if (!isset($_SESSION['userData']) || $_SESSION['userData']['role'] !== 'ADMIN') {
-    http_response_code(403);
+    http_response_code(403); //this is the error code that standards to dictate a permission issue
     echo json_encode([
         "status" => "error",
         "errorMsg" => "Admin access required"

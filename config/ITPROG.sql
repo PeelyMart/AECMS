@@ -39,17 +39,6 @@ CREATE TABLE `orders_header` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `orders_header`
---
-
-INSERT INTO `orders_header` (`id`, `ext_id`, `platform`, `buyer_username`, `total_worth`, `assigned_to`, `status`, `created_at`) VALUES
-(45, 'ORDLZK-0001', 'lazada', 'JayTheJay123', 900.00, 1, 'pending', '2026-03-30 16:09:27'),
-(49, 'LZAADA-ORDER12312', 'shopee', 'Philip123', 3000.00, 1, 'pending', '2026-03-30 16:15:53'),
-(50, 'LZAADA-ORDER12311', 'shopee', 'James123', 7700.00, 1, 'pending', '2026-03-30 16:15:53');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `order_items`
 --
 
@@ -64,21 +53,6 @@ CREATE TABLE `order_items` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `order_items`
---
-
-INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `external_sku`, `qty`, `unit_price_snapshot`, `sub_total`, `created_at`) VALUES
-(72, 45, 1, 'LZ-0001', 1, 500.00, 500.00, '2026-03-30 16:09:27'),
-(73, 45, 2, 'LZ-0008', 1, 400.00, 400.00, '2026-03-30 16:09:27'),
-(78, 49, 1, 'SK-0001', 2, 500.00, 1000.00, '2026-03-30 16:15:53'),
-(79, 49, 2, 'SK-0008', 5, 400.00, 2000.00, '2026-03-30 16:15:53'),
-(80, 50, 1, 'SK-0001', 9, 500.00, 4500.00, '2026-03-30 16:15:53'),
-(81, 50, 2, 'SK-0008', 8, 400.00, 3200.00, '2026-03-30 16:15:53');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `products`
 --
 
@@ -94,16 +68,7 @@ CREATE TABLE `products` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `name`, `l_sku`, `s_sku`, `t_sku`, `qty`, `remarks`, `unit_price`, `created_at`) VALUES
-(1, 'Red Coat', 'LZ-0001', 'SK-0001', 'TK-0001', 90, 'its a red coat', 500.00, '2026-03-28 16:18:15'),
-(2, 'BlackCup', 'LZ-0008', 'SK-0008', 'TK-0008', 600, 'Its a black cup', 400.00, '2026-03-28 16:19:20');
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `users`
 --
@@ -120,56 +85,26 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `email`, `firstName`, `lastName`, `contactNumber`, `password`, `status`, `role`, `created_at`) VALUES
-(1, 'philipmartinantolihao@gmail.com', 'Philip', 'Antolihao', '09950740100', '$2y$12$siJ/VdYlWiOzz0k51Ks65uCwjRW4r3AhjTtmcge5/OXm855nrWMDi', 'PENDING', 'NORMAL', '2026-03-30 11:18:30');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `orders_header`
---
 ALTER TABLE `orders_header`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `unique_order` (`ext_id`,`platform`),
   ADD KEY `idx_orders_assigned_to` (`assigned_to`);
 
---
--- Indexes for table `order_items`
---
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idx_order_items_order_id` (`order_id`),
   ADD KEY `idx_order_items_product_id` (`product_id`);
 
---
--- Indexes for table `products`
---
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `uniq_l_sku` (`l_sku`),
   ADD UNIQUE KEY `uniq_s_sku` (`s_sku`),
   ADD UNIQUE KEY `uniq_t_sku` (`t_sku`);
 
---
--- Indexes for table `users`
---
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `orders_header`
---
+-
 ALTER TABLE `orders_header`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
