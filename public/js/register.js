@@ -37,6 +37,8 @@ function checkForms(e){
 
     // If all validations passed, submit the form
     if (approve === 3) {
-        form.submit(); // this sends it to register.php as normal
+	// this sends it to register.php as normal
+        form.submit();
+	    alert("Account created: Contact admin for ID and approval");
     }
 }

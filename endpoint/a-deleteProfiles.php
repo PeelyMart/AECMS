@@ -10,5 +10,5 @@ if (isset($_GET['id'])) {
     $stmt->execute();
 }
 
-header("Location: a-profiles.html");
+header("Location: ../public/a-profiles.html");
 exit;
