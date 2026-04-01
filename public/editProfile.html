@@ -5,6 +5,16 @@
     <link rel="stylesheet" href="stylesheets/a-profiles.css">
     <title>Edit Profile</title>
 </head>
+<style>
+    .dropdown {
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+    }
+    
+    .dropdown option {
+      background-color: #272a2e;
+    }
+</style>
 <body>
     <div class="mainContent">
         <div class="module">
@@ -25,7 +35,7 @@
                 <input type="password" id="password" placeholder="Enter new password">
 
                 <label>Status</label>
-                <select id="status">
+                <select class="dropdown" id="status">
                     <option value="PENDING">PENDING</option>
                     <option value="ACTIVE">ACTIVE</option>
                     <option value="INACTIVE">INACTIVE</option>
