@@ -2,6 +2,15 @@
 session_start();
 require __DIR__ . '/database/DBConnection.php';
 
+if (!isset($_SESSION['userData']) || $_SESSION['userData']['role'] !== 'ADMIN') {
+    http_response_code(403);
+    echo json_encode([
+        "status" => "error",
+        "errorMsg" => "Admin access required"
+    ]);
+    exit;
+}
+
 // Check if user is ADMIN
 if (!isset($_SESSION['userData']) || $_SESSION['userData']['role'] !== 'ADMIN') {
     http_response_code(403);

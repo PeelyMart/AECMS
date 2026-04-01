@@ -2,13 +2,15 @@
 require __DIR__ . '/database/DBConnection.php';
 session_start();
 
-// code to ensure that admins are the only ones who can access this
+if (!isset($_SESSION['userData']) || $_SESSION['userData']['role'] !== 'ADMIN') {
+    http_response_code(403);
+    echo json_encode([
+        "status" => "error",
+        "errorMsg" => "Admin access required"
+    ]);
+    exit;
+}
 
-/* 
-if ($_SESSION['userData']['role'] !== 'admin') { 
-        exit; 
-} 
-*/
 
 $result = $conn->query("SELECT id, firstName, lastName, email, status, role FROM users");
 

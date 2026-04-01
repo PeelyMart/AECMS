@@ -119,8 +119,7 @@ if (($handle = fopen($_FILES['csvFile']['tmp_name'], 'r')) !== false) {
 	$stmt->execute();
 	}
 
-    
-
+    header("Location: ../../public/a-readProd.html");
     fclose($handle);
 }
     

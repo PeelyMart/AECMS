@@ -1,4 +1,15 @@
 <?php
+session_start();
+if (!isset($_SESSION['userData']) || $_SESSION['userData']['role'] !== 'ADMIN') {
+    http_response_code(403);
+    echo json_encode([
+        "status" => "error",
+        "errorMsg" => "Admin access required"
+    ]);
+    exit;
+}
+
+
 require 'database/DBConnection.php';
 $name = $_POST['name']; 
 $qty = $_POST['qty']; 

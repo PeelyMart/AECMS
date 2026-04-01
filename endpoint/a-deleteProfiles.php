@@ -1,6 +1,16 @@
 <?php
 require __DIR__ . '/database/DBConnection.php';
 session_start();
+if (!isset($_SESSION['userData']) || $_SESSION['userData']['role'] !== 'ADMIN') {
+    http_response_code(403);
+    echo json_encode([
+        "status" => "error",
+        "errorMsg" => "Admin access required"
+    ]);
+    exit;
+}
+
+
 
 if (isset($_GET['id'])) {
     $id = (int)$_GET['id'];

@@ -1,0 +1,11 @@
+﻿Order ID,Order Status,Order Substatus,Cancellation/Return Type,SKU ID,SKU Unit Original Price,SKU Subtotal Before Discount,SKU Platform Discount,SKU Seller Discount,SKU Subtotal After Discount,Shipping Fee After Discount,Original Shipping Fee,Shipping Fee Seller Discount,Shipping Fee Platform Discount,Order Amount,Order Refund Amount,Fulfilment Type,Warehouse Name,Tracking ID,Delivery Option,Payment Method,Package ID,Purchase Channel
+TT_1001,processing,order placed,-,TT-H001-03,700,799,80,50,669,80,120,20,20,749,0,FBL,WH-A1,TRK8839101,Standard,COD,PKG-5001,TikTok Shop
+TT_1001,processing,order placed,-,TT-S001-03,850,699,70,40,589,60,100,20,20,749,0,FBL,WH-A1,TRK8839101,Standard,COD,PKG-5001,TikTok Shop
+TT_1001,processing,order placed,-,TT-H002-03,750,759,60,40,659,70,110,20,20,749,0,FBL,WH-A1,TRK8839101,Standard,COD,PKG-5001,TikTok Shop
+TT_1002,processing,order placed,-,TT-H003-03,950,899,90,60,749,90,130,20,20,1039,0,FBL,WH-B2,TRK7721190,Express,Card,PKG-5002,TikTok Shop
+TT_1002,processing,order placed,-,TT-S002-03,955,649,50,40,559,60,120,30,30,1039,0,FBL,WH-B2,TRK7721190,Express,Card,PKG-5002,TikTok Shop
+TT_1002,processing,order placed,-,TT-S001-03,850,749,70,50,629,80,140,30,30,1039,0,FBL,WH-B2,TRK7721190,Express,Card,PKG-5002,TikTok Shop
+TT_1002,processing,order placed,-,TT-H002-03,750,699,60,40,599,70,110,20,20,1039,0,FBL,WH-B2,TRK7721190,Express,Card,PKG-5002,TikTok Shop
+TT_1003,processing,order placed,-,TT-H003-03,950,799,80,50,669,70,110,20,20,1388,0,FBL,WH-C3,TRK6651029,Standard,E-Wallet,PKG-5003,TikTok Shop
+TT_1003,processing,order placed,-,TT-S002-03,955,849,90,60,699,80,120,20,20,1388,0,FBL,WH-C3,TRK6651029,Standard,E-Wallet,PKG-5003,TikTok Shop
+TT_1003,processing,order placed,-,TT-H001-03,700,699,60,40,599,70,100,20,20,1388,0,FBL,WH-C3,TRK6651029,Standard,E-Wallet,PKG-5003,TikTok Shop
