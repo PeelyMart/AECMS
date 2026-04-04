@@ -11,7 +11,6 @@ if (!isset($_SESSION['userData']) || $_SESSION['userData']['role'] !== 'ADMIN') 
     exit;
 }
 
-// Check if user is ADMIN
 if (!isset($_SESSION['userData']) || $_SESSION['userData']['role'] !== 'ADMIN') {
     http_response_code(403);
     echo json_encode([
@@ -24,7 +23,6 @@ if (!isset($_SESSION['userData']) || $_SESSION['userData']['role'] !== 'ADMIN') 
 header('Content-Type: application/json');
 
 try {
-    // Get all active staff members (NORMAL users who can be assigned orders)
     $query = "SELECT id, firstName, lastName FROM users WHERE role = 'NORMAL' AND status = 'ACTIVE' ORDER BY firstName, lastName";
     $result = $conn->query($query);
     

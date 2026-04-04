@@ -1,8 +1,6 @@
-// Chart instance
 let chartInstance = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // Fetch only analytics data
     await loadAnalytics();
 });
 

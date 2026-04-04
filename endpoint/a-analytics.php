@@ -3,7 +3,7 @@ require __DIR__ . '/database/DBConnection.php';
 session_start();
 
 if (!isset($_SESSION['userData']) || $_SESSION['userData']['role'] !== 'ADMIN') {
-    http_response_code(403); //this is the error code that standards to dictate a permission issue
+    http_response_code(403); 
     echo json_encode([
         "status" => "error",
         "errorMsg" => "Admin access required"

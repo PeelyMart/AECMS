@@ -1,4 +1,3 @@
-// All orders data and pagination
 let allOrders = [];
 let filteredOrders = [];
 let staffList = [];
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadStaffList();
     renderPagination();
     
-    // Add event listeners for date filters
     document.getElementById("fromDate").addEventListener("change", () => {
         fromDate = document.getElementById("fromDate").value;
         filterOrders();
@@ -49,7 +47,7 @@ async function loadAllOrders() {
 }
 
 function renderStatusFilters() {
-    // Get unique statuses from all orders
+
     const uniqueStatuses = [...new Set(allOrders.map(o => o.status))].sort();
     const container = document.getElementById("statusFiltersContainer");
     container.innerHTML = "";
@@ -71,7 +69,6 @@ function renderStatusFilters() {
         radio.value = status;
         radio.setAttribute("data-status", status);
         
-        // Set color based on status
         const color = statusColorMap[status] || "#4CAF50";
         radio.style.accentColor = color;
         
@@ -113,7 +110,7 @@ async function loadStaffList() {
 
 function populateStaffSelect() {
     const select = document.getElementById("staffSelect");
-    // Clear existing options (keep the first one)
+
     while (select.options.length > 1) {
         select.remove(1);
     }
@@ -130,7 +127,6 @@ function renderOrdersTable() {
     const tbody = document.getElementById("ordersTableBody");
     tbody.innerHTML = "";
 
-    // Calculate pagination
     const startIdx = (currentPage - 1) * ordersPerPage;
     const endIdx = startIdx + ordersPerPage;
     const pageOrders = filteredOrders.slice(startIdx, endIdx);
@@ -217,15 +213,12 @@ function updateStats(orders) {
 function filterOrders() {
     const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim();
     
-    // Start with all orders
     let tempFiltered = allOrders;
     
-    // Apply status filter
     if (selectedStatuses.length > 0) {
         tempFiltered = tempFiltered.filter(order => selectedStatuses.includes(order.status));
     }
     
-    // Apply date range filter
     if (fromDate || toDate) {
         tempFiltered = tempFiltered.filter(order => {
             const orderDate = new Date(order.created_at).toISOString().split('T')[0];
@@ -241,7 +234,6 @@ function filterOrders() {
         });
     }
     
-    // Apply search filter
     if (searchTerm !== "") {
         tempFiltered = tempFiltered.filter(order => {
             const orderID = order.ext_id.toLowerCase();
@@ -266,7 +258,7 @@ function resetSearch() {
     document.getElementById("searchInput").value = "";
     document.getElementById("fromDate").value = "";
     document.getElementById("toDate").value = "";
-    // Reset all radio buttons
+
     document.querySelectorAll("#statusFiltersContainer input[type='radio']").forEach(rb => {
         rb.checked = false;
     });
@@ -279,7 +271,6 @@ function resetSearch() {
     updateStats(allOrders);
 }
 
-// Modal Functions
 function openModal(orderId, currentAssigned, currentUserId) {
     selectedOrderId = orderId;
     document.getElementById("modalOrderId").textContent = orderId;
@@ -316,12 +307,10 @@ async function saveAssignment() {
         if (result.status === "success") {
             closeModal();
             
-            // Get the assigned staff name for success message
             const staffName = newAssignedTo ? 
                 (result.order.firstName + " " + (result.order.lastName || "")).trim() : 
                 "Unassigned";
             
-            // Reload all orders to ensure data is in sync
             const orderRes = await fetch("../endpoint/a-adminOrders.php", {
                 method: "GET",
                 credentials: "include",
@@ -344,7 +333,6 @@ async function saveAssignment() {
     }
 }
 
-// Close modal when clicking outside
 document.addEventListener("click", (e) => {
     const modal = document.getElementById("assignmentModal");
     if (e.target === modal) {
@@ -352,7 +340,6 @@ document.addEventListener("click", (e) => {
     }
 });
 
-// Allow search on Enter key
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("searchInput");
     if (searchInput) {
