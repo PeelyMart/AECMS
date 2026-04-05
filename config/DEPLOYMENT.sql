@@ -4,9 +4,7 @@
 CREATE DATABASE IF NOT EXISTS ITPROG;
 USE ITPROG;
 
--- =====================================
--- DROP TABLES (for clean reset)
--- =====================================
+
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS order_items;
 DROP TABLE IF EXISTS orders_header;
@@ -15,9 +13,6 @@ DROP TABLE IF EXISTS users;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
--- =====================================
--- USERS
--- =====================================
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   email VARCHAR(50) NOT NULL UNIQUE,
@@ -30,9 +25,6 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- =====================================
--- PRODUCTS
--- =====================================
 CREATE TABLE products (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(150) NOT NULL,
@@ -45,9 +37,6 @@ CREATE TABLE products (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- =====================================
--- ORDERS HEADER
--- =====================================
 CREATE TABLE orders_header (
   id INT AUTO_INCREMENT PRIMARY KEY,
   ext_id VARCHAR(100) NOT NULL,
@@ -67,9 +56,6 @@ CREATE TABLE orders_header (
     ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
--- =====================================
--- ORDER ITEMS
--- =====================================
 CREATE TABLE order_items (
   id INT AUTO_INCREMENT PRIMARY KEY,
   order_id INT NOT NULL,

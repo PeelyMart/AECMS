@@ -10,9 +10,6 @@ $dotenv->load();
 //rewrite .ENV file BEFORE RUNNING THIS FILE!
 echo "<html>";
 echo "<h1>Welcome to the AECMS first time-set up please wait as we set up your database</h1><br>";
-// =========================
-// DB CONNECTION (NO DB YET)
-// =========================
 $host = $_ENV['DB_HOST'];
 $user = $_ENV['DB_USER'];
 $pass = $_ENV['DB_PASS'];
@@ -68,7 +65,7 @@ if ($result->num_rows === 0) {
     echo "[!]Admin already exists if unintented, please clear your databse and run this script again<br>";
 }
 echo "<h2>Installation Complete</h2>";
-echo "<p>Redirecting to login in 30 seconds...</p>";
+echo "<p>Redirecting to login in 10 seconds...</p>";
 echo "
 <script>
 setTimeout(() => {
@@ -76,7 +73,7 @@ setTimeout(() => {
 }, 10000);
 </script>
 ";
-//just enough time so that the admin can see our current 
+//just enough time so that the admin can see our message 
 echo "</html>";
 $conn->close();
 
