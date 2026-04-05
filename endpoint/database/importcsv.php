@@ -1,12 +1,13 @@
 <?php
 require 'DBConnection.php';
+session_start();
 if(!isset($_POST['platform'])){
 	http_response_code(204); //code for a missing variable and etc
 	header("Location: ../../public/a-import.html");
 	exit;
 
 }
-if (!isset($_SESSION['userData']) || $_SESSION['userData']['role'] !== 'ADMIN') {
+if (!isset($_SESSION['userData']) && $_SESSION['userData']['role'] !== 'ADMIN') {
     http_response_code(403);
     echo json_encode([
         "status" => "error",
